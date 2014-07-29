@@ -101,7 +101,7 @@ public class GaussianLayer extends Layer{
 
     @Override
     public void mult(int i, float f) {
-        delegate.div(i,f);
+        delegate.mult(i,f);
     }
 
     @Override
