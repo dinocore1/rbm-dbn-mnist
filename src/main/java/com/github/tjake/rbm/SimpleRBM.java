@@ -236,4 +236,23 @@ public class SimpleRBM
         return energy;
     }
 
+    public float freeEnergy(Layer visibleLayer) {
+        float firstTerm = 0.0f;
+        for(int i=0;i<biasVisible.size();i++){
+            firstTerm += biasVisible.get(i) * visibleLayer.get(i);
+        }
+
+        float secondTerm = 0.0f;
+        for(int i=0;i<biasHidden.size();i++){
+            float e = 0.0f;
+            for(int j=0;j<biasVisible.size();j++){
+                e += weights[i].get(j)*visibleLayer.get(j);
+            }
+            secondTerm += Math.log(1+Math.exp(biasHidden.get(i)+e));
+        }
+
+
+        return - firstTerm - secondTerm;
+    }
+
 }
